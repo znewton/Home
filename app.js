@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function(e){
 	startTime();
-	getLocationWeather();
+	getLocation();
 });
 
 function startTime() {
@@ -34,7 +34,7 @@ function checkTime(i) {
 
 function getLocation() {
 	if (navigator.geolocation) {
-		navigator.geolocation.getCurrentPosition(getWeather);
+		navigator.geolocation.getCurrentPosition(getLocationWeather);
 	} else {
 		document.getElementById('weather').innerHTML = "Geolocation is not supported by this browser.";
 	}
@@ -59,20 +59,23 @@ function showWeather(response){
 	var dayNight = today.getHours() > 6 && today.getHours() < 18 ? 'day' : 'night';
 	var tempFar = response.weather.main.temp * 9/5 - 459.67;
 	// document.getElementById("weather").innerHTML = Math.round( tempFar * 10) / 10 + '&deg; <span>' + response.weather.weather[0].description + '</span>'; //[°F] = [K] × 9/5 − 459.67
-
-	document.getElementById('location').innerHTML = response.location.city + ', ' + response.location.region_code;
+	console.log(response);
+	document.getElementById('location').innerHTML = response.weather['name'];
 	document.getElementById('temperature').innerHTML =  Math.round( tempFar * 10) / 10 + '&deg;';
 	document.getElementById('weather-description').innerHTML = '<i class="wi wi-' + dayNight + '-' + response.weather.weather[0].main.toLowerCase() + '" title="' + response.weather.weather[0].main.toLowerCase() +'"></i>';
 }
 
-function getLocationWeather(){
+function getLocationWeather(position){
+	var lat = position.coords.latitude;
+	var lon = position.coords.longitude;
 	var oReq = new XMLHttpRequest();
 	oReq.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
 			showWeather(JSON.parse(this.response));
 		}
 	};
-	var url = "/weather.php";
+	var url = "/weather.php?lat="+lat+"&lon="+lon;
+	console.log(url);
 	oReq.open("GET", url, true);
 	oReq.send();
 }

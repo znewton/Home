@@ -119,3 +119,6 @@ i.wi.wi-day-mist::before {
 i.wi.wi-night-mist::before {
 	content: '\f04a';
 }
+i.wi.wi-day-clear::before {
+	content: '\f00d';
+}
