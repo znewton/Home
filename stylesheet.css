@@ -1,22 +1,20 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700');
-@font-face {
-	font-family: 'MeteoconsRegular';
-	src: url('/lib/meteocons/meteocons-webfont.eot');
-	src: url('/lib/meteocons/meteocons-webfont.eot?#iefix') format('embedded-opentype'),
-	url('/lib/meteocons/meteocons-webfont.woff') format('woff'),
-	url('/lib/meteocons/meteocons-webfont.ttf') format('truetype'),
-	url('/lib/meteocons/meteocons-webfont.svg#MeteoconsRegular') format('svg');
-	font-weight: normal;
-	font-style: normal;
-}
 
 body{
 	margin: 0;
 	padding: 0;
-	font-family: 'Roboto',sans-serif;
+	font-family: 'Roboto Light',sans-serif;
 	font-weight: 300;
 	font-size: 100%;
 	background-color: #efefef;
+}
+body.day {
+	background-color: #D8EDF0;
+	color: #3f3f3f;
+}
+body.night {
+	background-color: #D8EDF0;
+	color: #fff;
 }
 
 .sidebar {
@@ -24,6 +22,7 @@ body{
 	padding: 0;
 	margin: 0;
 	position: fixed;
+	top: 1em;
 	right: 0;
 	font-size: 1.5em;
 	height: 100%;
@@ -35,20 +34,40 @@ body{
 	display: block;
 	left: -9em;
 	width: 9em;
-	margin-top: 2em;
+	margin-bottom: 2em;
 	margin-left: 0;
 	box-sizing: border-box;
 	border-top-left-radius: 5px;
 	border-bottom-left-radius: 5px;
-	box-shadow: -1px 2px 6px rgba(0,0,0,0.15);
+	/*box-shadow: -1px 2px 6px rgba(0,0,0,0.15);*/
 	line-height: 2em;
 	padding-right: 2em;
 	padding-left: 0.5em;
 	text-decoration: none;
-	color: #444;
+	color: #555;
 	text-align: left;
-	transition: all 0.2s ease;
+	/*transition: all 0.2s ease;*/
 	text-overflow: ellipsis;
+
+	/*credit for this: http://enjoycss.com/gallery/text_effects/dF*/
+	/*box-shadow:*/
+			/*0 1px 0 rgb(204,204,204) ,*/
+			/*0 2px 0 rgb(201,201,201) ,*/
+			/*0 3px 0 rgb(187,187,187) ,*/
+			/*0 4px 0 rgb(185,185,185) ,*/
+			/*0 5px 0 rgb(170,170,170) ,*/
+			/*0 6px 1px rgba(0,0,0,0.0980392) ,*/
+			/*0 0 5px rgba(0,0,0,0.0980392) ,*/
+			/*0 1px 3px rgba(0,0,0,0.298039) ,*/
+			/*0 3px 5px rgba(0,0,0,0.2) ,*/
+			/*0 5px 10px rgba(0,0,0,0.247059) ,*/
+			/*0 10px 10px rgba(0,0,0,0.2) ,*/
+			/*0 20px 20px rgba(0,0,0,0.14902) ;*/
+	-webkit-transition: all 300ms cubic-bezier(0.42, 0, 0.58, 1);
+	-moz-transition: all 300ms cubic-bezier(0.42, 0, 0.58, 1);
+	-o-transition: all 300ms cubic-bezier(0.42, 0, 0.58, 1);
+	transition: all 300ms cubic-bezier(0.42, 0, 0.58, 1);
+
 }
 .sidebar > a:hover {
 	color: #222;
@@ -61,10 +80,39 @@ body{
 }
 
 #info {
-	width: 90%;
-	margin-top: 5em;
+	position: absolute;
+	top: 1em;
+	left: 0;
+	background-color: #fff;
+	border-top-right-radius: 5px;
+	border-bottom-right-radius: 5px;
+
+	width: 40%;
+	/*margin-top: 5em;*/
 	text-align: center;
 	display: inline-block;
+	-webkit-box-sizing: content-box;
+	-moz-box-sizing: content-box;
+	box-sizing: content-box;
+	border: none;
+	/*font: normal 72px/normal "Passero One", Helvetica, sans-serif;*/
+	/*color: rgba(255,255,255,1);*/
+	/*text-align: center;*/
+	-o-text-overflow: clip;
+	text-overflow: clip;
+	/*text-shadow:*/
+			/*0 1px 0 rgb(204,204,204) ,*/
+			/*0 2px 0 rgb(201,201,201) ,*/
+			/*0 3px 0 rgb(187,187,187) ,*/
+			/*0 4px 0 rgb(185,185,185) ,*/
+			/*0 5px 0 rgb(170,170,170) ,*/
+			/*0 6px 1px rgba(0,0,0,0.0980392) ,*/
+			/*0 0 5px rgba(0,0,0,0.0980392) ,*/
+			/*0 1px 3px rgba(0,0,0,0.298039) ,*/
+			/*0 3px 5px rgba(0,0,0,0.2) ,*/
+			/*0 5px 10px rgba(0,0,0,0.247059) , */
+			/*0 10px 10px rgba(0,0,0,0.2) ,*/
+			/*0 20px 20px rgba(0,0,0,0.14902) ;*/
 }
 #clock {
 	line-height: 2em;
@@ -84,16 +132,37 @@ body{
 	position: absolute;
 	left: 0;
 	top: 13em;
+	width: 40%;
 	background-color: #fff;
 	box-sizing: border-box;
 	border-top-right-radius: 5px;
 	border-bottom-right-radius: 5px;
-	box-shadow: -1px 2px 6px rgba(0,0,0,0.15);
+	/*box-shadow: -1px 2px 6px rgba(0,0,0,0.15);*/
 	line-height: 2em;
 	padding-left: 1em;
 	padding-right: 0.4em;
-	color: #444;
-	text-align: left;
+	color: #5f5f5f;
+	text-align: center;
+
+
+	/*credit for this: http://enjoycss.com/gallery/text_effects/dF*/
+	/*box-shadow:*/
+			/*0 1px 0 rgb(204,204,204) ,*/
+			/*0 2px 0 rgb(201,201,201) ,*/
+			/*0 3px 0 rgb(187,187,187) ,*/
+			/*0 4px 0 rgb(185,185,185) ,*/
+			/*0 5px 0 rgb(170,170,170) ,*/
+			/*0 6px 1px rgba(0,0,0,0.0980392) ,*/
+			/*0 0 5px rgba(0,0,0,0.0980392) ,*/
+			/*0 1px 3px rgba(0,0,0,0.298039) ,*/
+			/*0 3px 5px rgba(0,0,0,0.2) ,*/
+			/*0 5px 10px rgba(0,0,0,0.247059) ,*/
+			/*0 10px 10px rgba(0,0,0,0.2) ,*/
+			/*0 20px 20px rgba(0,0,0,0.14902) ;*/
+	/*-webkit-transition: all 300ms cubic-bezier(0.42, 0, 0.58, 1);*/
+	/*-moz-transition: all 300ms cubic-bezier(0.42, 0, 0.58, 1);*/
+	/*-o-transition: all 300ms cubic-bezier(0.42, 0, 0.58, 1);*/
+	/*transition: all 300ms cubic-bezier(0.42, 0, 0.58, 1);*/
 }
 #weather > span:not(:last-child)::after {
 	font-size: 1.2em;
@@ -103,10 +172,35 @@ body{
 	color: #888;
 }
 
+#module {
+	position: absolute;
+	background-color: #fff;
+	border-radius: 5px;
+	left: 41%;
+	width: 42%;
+	height: 90vh;
+	top: 1em;
+	overflow: auto;
+	box-sizing: border-box;
+	padding: 5px;
+}
+.post{
+	border-bottom: 1px solid #888;
+	padding: 1em 0;
+}
+.post img {
+	width: 100%;
+}
+.post .post-title {
+	text-decoration: none;
+	color: inherit;
+	font-size: 1.5em;
+}
 
 
 
-/*METEOCONS*/
+
+/*weather*/
 
 i.wi::before {
 	font-style: normal;
@@ -121,4 +215,13 @@ i.wi.wi-night-mist::before {
 }
 i.wi.wi-day-clear::before {
 	content: '\f00d';
+}
+i.wi.wi-day-clouds::before {
+	content: '\f002';
+}
+i.wi.wi-day-drizzle::before {
+	content: '\f00b';
+}
+i.wi.wi-night-drizzle::before {
+	content: '\f039';
 }
